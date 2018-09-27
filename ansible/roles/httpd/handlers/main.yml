@@ -1,0 +1,6 @@
+- name: restart httpd2.2 
+  service: name=httpd state=restarted
+  when: httpd==2.2
+- name: restart httpd2.4
+  service: name=httpd state=restarted
+  when: httpd==2.4

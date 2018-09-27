@@ -1,0 +1,6 @@
+- name: restart backup keepalived
+  service: name=keepalived state=restarted
+  when: Keepalived_roles == "Backup"
+- name: restart master keepalived
+  service: name=keepalived state=restarted
+  when: Keepalived_roles == "Master"

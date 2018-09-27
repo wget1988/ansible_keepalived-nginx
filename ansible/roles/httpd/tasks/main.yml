@@ -1,0 +1,12 @@
+- name: install httpd server
+  yum: name=httpd state=present
+- name: create web dir
+  file: dest=/data/html state=directory
+- name: create log dir
+  file: dest=/data/log state=directory
+- name: create index.html
+  template: src=index.html dest=/data/html/index.html
+- name: start web server
+  service: name=httpd state=started
+- include: httpd-2.2.yml
+- include: httpd-2.4.yml

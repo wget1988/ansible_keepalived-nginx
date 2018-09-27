@@ -1,0 +1,12 @@
+- hosts: Web
+  remote_user: root
+  roles:
+  - httpd
+- hosts: HA
+  remote_user: root
+  roles:
+  - HA
+- hosts: LB
+  remote_user: root
+  roles:
+  - LB

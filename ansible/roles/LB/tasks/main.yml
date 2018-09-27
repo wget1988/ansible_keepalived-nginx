@@ -1,0 +1,14 @@
+- name: install nginx
+  yum: name=nginx state=present
+- name: copy default conf
+  copy: src=nginx_default.conf dest=/etc/nginx/nginx.conf
+  notify: restart nginx
+  tags:
+    - default conf changed
+- name: copy lb conf
+  template: src=nginx_lb.conf dest=/etc/nginx/conf.d/
+  notify: restart nginx
+  tags:
+    - lb conf changed
+- name: start nginx
+  service: name=nginx state=started

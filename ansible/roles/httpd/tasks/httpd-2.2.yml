@@ -1,0 +1,12 @@
+- name: copy httpd2.2 Virtual host conf
+  copy: src=httpd2.2.Virtual.conf  dest=/etc/httpd/conf.d/web.conf
+  notify: restart httpd2.2 
+  when: httpd==2.2 
+  tags:
+    - httpd2.2 VH changed
+- name: copy httpd2.2 conf 
+  copy: src=httpd2.2.conf dest=/etc/httpd/conf/httpd.conf
+  notify: restart httpd2.2 
+  when: httpd==2.2 
+  tags:
+    - httpd2.2 conf changed

@@ -1,0 +1,16 @@
+- name: install keepalived
+  yum: name=keepalived state=present
+- name: create Master conf
+  template: src=Master_conf dest=/etc/keepalived/keepalived.conf
+  when: Keepalived_roles == "Master"
+  notify: restart master keepalived
+  tags:
+    - master conf changed
+- name: create Backup conf
+  template: src=Backup_conf dest=/etc/keepalived/keepalived.conf
+  when: Keepalived_roles == "Backup"
+  notify: restart backup keepalived
+  tags:
+    - backup conf changed
+- name: start keepalived
+  service: name=keepalived state=started
